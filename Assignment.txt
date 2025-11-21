@@ -1,0 +1,63 @@
+Operating Systems – Assignment 2
+Student: Menna Allah Osama Khalil Khalil Ibrahim
+Course Code: CSE233
+Topic: Process Management, Linker, Loader
+
+Exercise 1 – Using fork() in C :
+When fork() is called, the operating system creates a new process by duplicating the current process. After the fork, there are two programs running the same code:
+
+Parent process
+
+Child process
+
+The child process receives a return value of 0, which identifies it as the child.
+The parent process receives the PID of the child, identifying it as the parent.
+
+Both processes continue executing the same program from the same point but can perform different actions depending on whether they are the parent or the child. This is how multiple processes are created and managed in operating systems.
+
+Exercise 2 – Stopping Processes:
+ps aux | grep sleep shows all running processes that contain the word sleep, along with their Process ID (PID). This is how we locate the correct process.
+
+kill <PID> sends a termination signal to the process with that PID, stopping the running sleep process.
+
+Running ps aux | grep sleep again allows us to verify whether the process was successfully terminated.
+If it no longer appears, the kill command worked.
+
+Exercise 3 – Pausing and Resuming a Process:
+kill -STOP <PID> pauses the process immediately. It remains in memory but stops executing instructions. This works like pressing a pause button on the process.
+
+kill -CONT <PID> resumes the paused process, allowing it to continue execution from the exact point where it stopped. This works like pressing play.
+
+Exercise 4 – Role of the Linker:
+In this task, one file (file1.c) defines the function hello(), and another file (file2.c) declares and calls that function.
+Each file is compiled separately into an object file (.o file).
+
+The linker takes these object files and connects them together.
+Its main job is to:
+
+Match function calls with their correct definitions
+
+Combine all compiled parts into one single executable file
+
+Resolve addresses of functions and variables
+
+Here, the linker links the call to hello() in file2.c with its definition in file1.c and produces one working executable.
+
+Exercise 5 – Role of the Loader:
+When the program is executed:
+
+The loader brings the program’s executable file from disk into RAM.
+
+It loads all required shared libraries (shown using ldd).
+
+It allocates memory for:
+
+Code
+
+Data
+
+Stack
+
+It sets up the program’s runtime environment and prepares the CPU to start execution.
+
+The loader ensures that all required libraries are connected, memory is ready, and the program can run successfully.
